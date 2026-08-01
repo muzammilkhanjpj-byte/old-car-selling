@@ -7,7 +7,7 @@ import Dashboard from "./components/Dashboard";
 import Auth from "./components/Auth";
 // Mock data import removed — app uses Supabase data only
 import { supabase } from "./utils/supabaseClient";
-import { MagnifyingGlass, Funnel, ArrowClockwise, Crown, CircleNotch } from "@phosphor-icons/react";
+import { MagnifyingGlass, Funnel, ArrowClockwise, Crown, CircleNotch, Lightning, ShieldCheck, Tag, ArrowRight } from "@phosphor-icons/react";
 
 const generateUuid = () => {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
@@ -664,30 +664,74 @@ export default function App() {
         {/* VIEW: BROWSE CATALOG */}
         {!shouldShowAuth && activeTab === "browse" && (
           <>
-            {/* Hero Headers */}
+            {/* Hero Section */}
             <section className="hero-section">
-              <div className="hero-bg-container">
-                <img
-                  src="/hero-bg.jpg"
-                  alt="Luxury Automotive Exchange"
-                  className="hero-bg-image"
-                />
-                <div className="hero-overlay"></div>
-              </div>
+              <div className="hero-grid">
+                {/* Left Column: Aligned Content */}
+                <div className="hero-text-col">
+                  <div className="hero-badge">
+                    <Crown size={15} weight="fill" />
+                    <span>#1 Premium Automotive Exchange</span>
+                  </div>
 
-              <div className="hero-content">
-                <div className="hero-badge">
-                  <Crown size={14} weight="fill" />
-                  <span>Shehzad Autos • Premier Automotive Exchange</span>
+                  <h1 className="hero-title">
+                    Discover & Drive <br />
+                    <span className="highlight-red">Exotic Performance</span>
+                  </h1>
+
+                  <p className="hero-subtitle">
+                    Shehzad Autos is your premier marketplace for verified luxury supercars, electric vehicles, and sports cars. Buy with total confidence or list your vehicle in minutes.
+                  </p>
+
+                  {/* Feature Tags */}
+                  <div className="hero-tags-grid">
+                    <span className="hero-tag">
+                      <Lightning size={15} weight="bold" /> Instant Contact
+                    </span>
+                    <span className="hero-tag">
+                      <ShieldCheck size={15} weight="bold" /> 100% Verified
+                    </span>
+                    <span className="hero-tag">
+                      <Tag size={15} weight="bold" /> Certified Quality
+                    </span>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="hero-actions">
+                    <button 
+                      className="hero-cta-btn primary"
+                      onClick={() => {
+                        document.querySelector('.search-filter-card')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                    >
+                      Browse Catalog <ArrowRight size={18} weight="bold" />
+                    </button>
+                    <button 
+                      className="hero-cta-btn secondary"
+                      onClick={() => setActiveTab(currentUser ? "add" : "auth")}
+                    >
+                      Sell Your Car
+                    </button>
+                  </div>
                 </div>
 
-                <h1 className="hero-title">
-                  Experience The Pinnacle Of <span className="highlight-red">Automotive Performance</span>
-                </h1>
-
-                <p className="hero-subtitle">
-                  Browse, buy, and sell verified luxury supercars, electric vehicles, and high-performance sports cars with complete confidence.
-                </p>
+                {/* Right Column: Clear Supercar Showcase Card */}
+                <div className="hero-image-col">
+                  <div className="hero-showcase-card">
+                    <img
+                      src="/hero-bg.jpg"
+                      alt="Featured Porsche 911 GT3 RS"
+                      className="hero-showcase-img"
+                    />
+                    <div className="hero-floating-badge">
+                      <div className="badge-pulse-dot"></div>
+                      <div>
+                        <div className="floating-title">Featured: Porsche 911 GT3 RS</div>
+                        <div className="floating-sub">Verified & Ready to Drive</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </section>
 
