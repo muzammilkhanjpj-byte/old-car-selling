@@ -21,7 +21,7 @@ export default function Navbar({ activeTab, setActiveTab, currentUser, onSignOut
       <header className="navbar-top-layer">
         <div className="nav-logo" onClick={() => setActiveTab("browse")}>
           <img src="/logo.png" alt="Shehzad Autos Logo" className="nav-logo-img" />
-          <span className="nav-logo-text">SHEHZAD AUTOS</span>
+          <span className="nav-logo-text">SHEHZAD <span>AUTOS</span></span>
         </div>
         
         {/* Desktop Links (hidden on mobile/tablet) */}
