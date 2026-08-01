@@ -173,9 +173,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-logo-img {
-  height: 38px;
-  width: auto;
+  height: 40px;
+  width: 40px;
   object-fit: contain;
+  border-radius: 50%;
+  transition: transform var(--transition-fast);
+}
+
+.nav-logo:hover .nav-logo-img {
+  transform: rotate(15deg) scale(1.05);
 }
 
 .nav-logo-text {
