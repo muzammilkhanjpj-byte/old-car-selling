@@ -660,13 +660,16 @@ export default function App() {
           <>
             {/* Hero Headers */}
             <section className="hero-section">
-              <span className="hero-badge">
-                <Crown size={14} weight="duotone" />
-                <span>Next-Gen Automotive Exchange</span>
-              </span>
-              <h1 className="hero-title">
-                Find Your Next <span className="title-gradient">Octane Machine</span>
-              </h1>
+              <div className="hero-video-container">
+                <iframe
+                  src="https://player.vimeo.com/video/1209791757?autoplay=1&loop=1&background=1&muted=1&autopause=0"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                  title="Hero Background Video"
+                  className="hero-video"
+                ></iframe>
+              </div>
             </section>
 
             {/* Filter Card */}
