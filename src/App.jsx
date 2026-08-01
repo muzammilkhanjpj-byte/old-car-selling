@@ -715,7 +715,7 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Right Column: Clear Supercar Showcase Card */}
+                {/* Right Column: Prominent Supercar Showcase Card */}
                 <div className="hero-image-col">
                   <div className="hero-showcase-card">
                     <img
@@ -723,13 +723,6 @@ export default function App() {
                       alt="Featured Porsche 911 GT3 RS"
                       className="hero-showcase-img"
                     />
-                    <div className="hero-floating-badge">
-                      <div className="badge-pulse-dot"></div>
-                      <div>
-                        <div className="floating-title">Featured: Porsche 911 GT3 RS</div>
-                        <div className="floating-sub">Verified & Ready to Drive</div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
