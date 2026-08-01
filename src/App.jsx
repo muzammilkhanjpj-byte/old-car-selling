@@ -666,15 +666,28 @@ export default function App() {
           <>
             {/* Hero Headers */}
             <section className="hero-section">
-              <div className="hero-video-container">
-                <iframe
-                  src="https://player.vimeo.com/video/1209791757?autoplay=1&loop=1&background=1&muted=1&autopause=0"
-                  frameBorder="0"
-                  allow="autoplay; fullscreen"
-                  allowFullScreen
-                  title="Hero Background Video"
-                  className="hero-video"
-                ></iframe>
+              <div className="hero-bg-container">
+                <img
+                  src="/hero-bg.jpg"
+                  alt="Luxury Automotive Exchange"
+                  className="hero-bg-image"
+                />
+                <div className="hero-overlay"></div>
+              </div>
+
+              <div className="hero-content">
+                <div className="hero-badge">
+                  <Crown size={14} weight="fill" />
+                  <span>Shehzad Autos • Premier Automotive Exchange</span>
+                </div>
+
+                <h1 className="hero-title">
+                  Experience The Pinnacle Of <span className="highlight-red">Automotive Performance</span>
+                </h1>
+
+                <p className="hero-subtitle">
+                  Browse, buy, and sell verified luxury supercars, electric vehicles, and high-performance sports cars with complete confidence.
+                </p>
               </div>
             </section>
 
