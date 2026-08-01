@@ -106,21 +106,27 @@ export default function App() {
   // Listen to Supabase Auth State changes
   useEffect(() => {
     // 1. Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user) {
-        setCurrentUser(session.user);
-      } else {
-        const localUser = localStorage.getItem("mock_user");
-        if (localUser) {
-          try {
-            setCurrentUser(JSON.parse(localUser));
-          } catch (e) {
-            console.error("Error reading local mock user", e);
+    supabase.auth.getSession()
+      .then(({ data }) => {
+        if (data?.session?.user) {
+          setCurrentUser(data.session.user);
+        } else {
+          const localUser = localStorage.getItem("mock_user");
+          if (localUser) {
+            try {
+              setCurrentUser(JSON.parse(localUser));
+            } catch (e) {
+              console.error("Error reading local mock user", e);
+            }
           }
         }
-      }
-      setAuthLoading(false);
-    });
+      })
+      .catch((err) => {
+        console.warn("Supabase auth session fetch failed:", err);
+      })
+      .finally(() => {
+        setAuthLoading(false);
+      });
 
     // 2. Listen to auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
