@@ -12,6 +12,12 @@ export default function CarCard({ car, onViewDetails }) {
     return new Intl.NumberFormat("en-US").format(miles) + " mi";
   };
 
+  // Generate pre-filled WhatsApp URL
+  const phoneNum = (car.whatsapp || car.ownerPhone || "+923213805808").replace(/[\s\-\(\)\+]/g, "");
+  const formattedPrice = new Intl.NumberFormat("en-US").format(car.price || 0);
+  const message = `Hi! I am interested in buying your ${car.year || ""} ${car.make || ""} ${car.model || ""} listed for Rs. ${formattedPrice} on your site. Is this vehicle still available?`;
+  const whatsappUrl = `https://wa.me/${phoneNum}?text=${encodeURIComponent(message)}`;
+
   return (
     <div className="car-card">
       <div className="car-image-wrapper">
@@ -56,29 +62,29 @@ export default function CarCard({ car, onViewDetails }) {
           <button className="btn-card-primary" style={{ flex: 1 }} onClick={() => onViewDetails(car)}>
             View Details
           </button>
-          {car.whatsapp && (
-            <a
-              href={`https://wa.me/${car.whatsapp.replace(/[\s\-\(\)\+]/g, "")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-card-primary"
-              style={{
-                flex: 1,
-                background: "#ffffff",
-                border: "1px solid #ffffff",
-                color: "#000000",
-                textDecoration: "none",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "6px",
-                fontWeight: "600",
-              }}
-            >
-              <WhatsappLogo size={16} weight="fill" />
-              WhatsApp
-            </a>
-          )}
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-card-primary"
+            style={{
+              flex: 1,
+              background: "#25D366",
+              border: "1px solid #25D366",
+              color: "#ffffff",
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "6px",
+              fontWeight: "700",
+              borderRadius: "20px",
+              boxShadow: "0 4px 12px rgba(37, 211, 102, 0.25)"
+            }}
+          >
+            <WhatsappLogo size={18} weight="fill" />
+            WhatsApp
+          </a>
         </div>
       </div>
     </div>

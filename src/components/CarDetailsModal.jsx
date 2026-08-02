@@ -359,29 +359,38 @@ export default function CarDetailsModal({ car, onClose }) {
                     Contact Seller
                   </button>
 
-                  {car.whatsapp && car.whatsapp !== "+92" && (
-                    <a
-                      href={`https://wa.me/${car.whatsapp.replace(/[\s\-()+]/g, "")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-contact-action"
-                      style={{
-                        background: "#ffffff",
-                        border: "1px solid #ffffff",
-                        color: "#000000",
-                        marginTop: "8px",
-                        textDecoration: "none",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: "8px",
-                        fontWeight: "700",
-                      }}
-                    >
-                      <WhatsappLogo size={18} weight="fill" />
-                      Contact on WhatsApp
-                    </a>
-                  )}
+                  {(() => {
+                    const phoneNum = (car.whatsapp || car.ownerPhone || "+923213805808").replace(/[\s\-\(\)\+]/g, "");
+                    const formattedPrice = new Intl.NumberFormat("en-US").format(car.price || 0);
+                    const message = `Hi! I am interested in buying your ${car.year || ""} ${car.make || ""} ${car.model || ""} listed for Rs. ${formattedPrice} on your site. Is this vehicle still available?`;
+                    const modalWhatsappUrl = `https://wa.me/${phoneNum}?text=${encodeURIComponent(message)}`;
+                    
+                    return (
+                      <a
+                        href={modalWhatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-contact-action"
+                        style={{
+                          background: "#25D366",
+                          border: "1px solid #25D366",
+                          color: "#ffffff",
+                          marginTop: "8px",
+                          textDecoration: "none",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          gap: "8px",
+                          fontWeight: "700",
+                          borderRadius: "12px",
+                          boxShadow: "0 4px 12px rgba(37, 211, 102, 0.25)"
+                        }}
+                      >
+                        <WhatsappLogo size={18} weight="fill" />
+                        Contact on WhatsApp
+                      </a>
+                    );
+                  })()}
                 </div>
               </div>
             </div>
