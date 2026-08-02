@@ -235,9 +235,13 @@ export default function CarForm({ onSubmit, onCancel, initialCar }) {
     }
     if (!formData.price || Number(formData.price) <= 0) {
       newErrors.price = "Enter a valid positive price";
+    } else if (Number(formData.price) > 999999999999) {
+      newErrors.price = "Price exceeds maximum allowable limit";
     }
     if (formData.mileage === "" || Number(formData.mileage) < 0) {
       newErrors.mileage = "Enter a valid mileage (0 or more)";
+    } else if (Number(formData.mileage) > 1000000000) {
+      newErrors.mileage = "Mileage exceeds maximum allowable limit";
     }
     // Removed seller details validation since seller details section is removed from the form.
 
@@ -515,11 +519,15 @@ export default function CarForm({ onSubmit, onCancel, initialCar }) {
                     position: "absolute", 
                     bottom: "8px", 
                     left: "8px", 
-                    fontSize: "10px", 
-                    background: "rgba(0,0,0,0.6)", 
-                    padding: "2px 6px", 
+                    fontSize: "11px", 
+                    fontWeight: "700",
+                    background: "rgba(15, 23, 42, 0.85)", 
+                    backdropFilter: "blur(4px)",
+                    padding: "3px 8px", 
                     borderRadius: "6px",
-                    color: "var(--color-text-secondary)"
+                    color: "#ffffff",
+                    border: "1px solid rgba(255, 255, 255, 0.2)",
+                    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)"
                   }}>
                     {idx === 0 ? "Cover" : `#${idx + 1}`}
                   </span>

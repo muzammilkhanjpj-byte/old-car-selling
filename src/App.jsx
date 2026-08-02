@@ -318,7 +318,12 @@ export default function App() {
       setActiveTab("browse");
     } catch (error) {
       console.error("Error creating listing with storage:", error);
-      alert("Failed to save listing: " + error.message);
+      const msg = error.message || "";
+      if (msg.includes("out of range for type integer")) {
+        alert("Failed to save listing: The price or mileage value (" + formData?.price + ") exceeds Supabase's INTEGER column limit (max 2,147,483,647).\n\nTo allow higher prices, run this in your Supabase SQL Editor:\nALTER TABLE cars ALTER COLUMN price TYPE bigint;\nALTER TABLE cars ALTER COLUMN mileage TYPE bigint;");
+      } else {
+        alert("Failed to save listing: " + msg);
+      }
     }
   };
 
@@ -429,7 +434,12 @@ export default function App() {
       setActiveTab("dashboard");
     } catch (error) {
       console.error("Error updating listing with storage:", error);
-      alert("Failed to update listing: " + error.message);
+      const msg = error.message || "";
+      if (msg.includes("out of range for type integer")) {
+        alert("Failed to update listing: The price or mileage value exceeds Supabase's INTEGER column limit (max 2,147,483,647).\n\nTo allow higher prices, run this in your Supabase SQL Editor:\nALTER TABLE cars ALTER COLUMN price TYPE bigint;\nALTER TABLE cars ALTER COLUMN mileage TYPE bigint;");
+      } else {
+        alert("Failed to update listing: " + msg);
+      }
     }
   };
 
